@@ -23,7 +23,8 @@ def login():
 
     # Verificar las credenciales en Firestore
     users_ref = db_firestore.collection('register')
-    query = users_ref.where('email', '==', email).where('contrasena', '==', contrasena).limit(1)
+    query = users_ref.where('email', '==', email).where('contrasena', '==', contrasena, filter_=True).limit(1)
+
     results = query.get()
 
     if len(results) > 0:

@@ -4,6 +4,7 @@ from firebase_connection import db_firestore
 from flask import request, jsonify
 from utils.jwt_utils import generate_token, verify_token
 import jwt
+from google.cloud import firestore
 
 
 def register():
@@ -23,6 +24,9 @@ def login():
 
     # Verificar las credenciales en Firestore
     users_ref = db_firestore.collection('register')
+    # Firestore reference
+    db = firestore.Client()
+    users_ref = db.collection('users')
     query = users_ref.where('email', '==', email).where('contrasena', '==', contrasena, filter_=True).limit(1)
 
     results = query.get()

@@ -25,8 +25,8 @@ def login():
     # Verificar las credenciales en Firestore
     users_ref = db_firestore.collection('register')
     # Firestore reference
-    db = firestore.Client()
-    users_ref = db.collection('users')
+    ddb = firestore.Client(project="back-flutter-a83ed")
+    users_ref = ddb.collection('users')
     query = users_ref.where('email', '==', email).where('contrasena', '==', contrasena, filter_=True).limit(1)
 
     results = query.get()

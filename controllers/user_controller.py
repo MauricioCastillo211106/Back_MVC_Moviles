@@ -27,7 +27,7 @@ def login():
     # Firestore reference
     ddb = firestore.Client(project="back-flutter-a83ed")
     users_ref = ddb.collection('users')
-    query = users_ref.where('email', '==', email).where('contrasena', '==', contrasena, filter_=True).limit(1)
+    query = users_ref.where('email', '==', email).where('contrasena', '==', contrasena).limit(1)
 
     results = query.get()
 

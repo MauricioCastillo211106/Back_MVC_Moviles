@@ -42,4 +42,5 @@ requests-toolbelt==0.7.0
 urllib3==1.26.16
 uuid==1.30
 firebase-admin==6.2.0
+gunicorn
 

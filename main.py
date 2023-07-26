@@ -1,15 +1,13 @@
 from flask import Flask
-#from firebase_connection import initialize_firebase
 from controllers.user_controller import register as register_user
 from controllers.user_controller import login
 from controllers.pets_controller import get_form_adopted
 from controllers.pets_controller import forms
 from utils.jwt_utils import token_required
-
+from waitress import serve
+import os
 
 app = Flask(__name__)
-
-
 
 # Rutas
 app.route('/register', methods=['POST'])(register_user)
@@ -25,7 +23,7 @@ def get_adopted():
 def form_adopted():
     return forms()
 
-
+# No es necesario el código app.run() aquí
 
 if __name__ == '__main__':
-    app.run()
+    serve(app, host='0.0.0.0', port=os.getenv("PORT", default=5000))
